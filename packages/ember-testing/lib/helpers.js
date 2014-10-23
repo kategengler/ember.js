@@ -33,7 +33,7 @@ function currentURL(app){
 
 function pauseTest(){
   Test.adapter.asyncStart();
-  return new Ember.RSVP.Promise(function(){ });
+  return new Ember.RSVP.Promise(function(){ }, 'TestAdapter paused promise');
 }
 
 function visit(app, url) {
@@ -411,7 +411,7 @@ helper('currentURL', currentURL);
   ```
 
  @method pauseTest
- @return {Object} An empty promise
+ @return {Object} A promise that will never resolve
  */
 helper('pauseTest', pauseTest);
 

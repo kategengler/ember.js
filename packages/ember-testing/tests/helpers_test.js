@@ -469,13 +469,12 @@ QUnit.module("ember-testing debugging helpers", {
 
 test("pauseTest pauses", function(){
   expect(1);
-  var fakeAdapterAsyncStart = function(){
+  function fakeAdapterAsyncStart() {
     ok(true, 'Async start should be called');
-  };
+  }
   Test.adapter.asyncStart = fakeAdapterAsyncStart;
 
   App.testHelpers.pauseTest();
-  //TODO: Test empty promise part
 });
 
 QUnit.module("ember-testing routing helpers", {
