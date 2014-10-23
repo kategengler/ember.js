@@ -445,6 +445,39 @@ test("`wait` respects registerWaiters with optional context", function() {
 
 });
 
+QUnit.module("ember-testing debugging helpers", {
+  setup: function(){
+    cleanup();
+
+    run(function() {
+      App = EmberApplication.create();
+      App.Router = EmberRouter.extend({
+        location: 'none'
+      });
+
+      App.setupForTesting();
+    });
+
+    App.injectTestHelpers();
+    run(App, 'advanceReadiness');
+  },
+
+  teardown: function(){
+    cleanup();
+  }
+});
+
+test("pauseTest pauses", function(){
+  expect(1);
+  var fakeAdapterAsyncStart = function(){
+    ok(true, 'Async start should be called');
+  };
+  Test.adapter.asyncStart = fakeAdapterAsyncStart;
+
+  App.testHelpers.pauseTest();
+  //TODO: Test empty promise part
+});
+
 QUnit.module("ember-testing routing helpers", {
   setup: function(){
     cleanup();

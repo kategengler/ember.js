@@ -31,6 +31,11 @@ function currentURL(app){
   return get(router, 'location').getURL();
 }
 
+function pauseTest(){
+  Test.adapter.asyncStart();
+  return new Ember.RSVP.Promise(function(){ });
+}
+
 function visit(app, url) {
   var router = app.__container__.lookup('router:main');
   router.location.setURL(url);
@@ -390,6 +395,25 @@ click('#some-link-id').then(validateURL);
 @since 1.5.0
 */
 helper('currentURL', currentURL);
+
+/**
+  Pauses the current test
+
+  Example:
+
+  ```javascript
+    visit('/')
+    return pauseTest();
+
+    click('.btn');
+
+    The test will pause before clicking the button.
+  ```
+
+ @method pauseTest
+ @return {Object} An empty promise
+ */
+helper('pauseTest', pauseTest);
 
 /**
   Triggers the given DOM event on the element identified by the provided selector.
