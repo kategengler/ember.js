@@ -2,6 +2,7 @@
   "framework": "qunit",
   "test_page": "dist/tests/index.html?hidepassed&hideskipped&timeout=60000",
   "timeout": 540,
+  "browser_start_timeout": 100,
   "parallel": 4,
   "disable_watching": true,
   "launchers": {
