@@ -43,7 +43,7 @@ RSVP.resolve()
     // Calling testem directly here instead of `ember test` so that
     // we do not have to do a double build (by the time this is run
     // we have already ran `ember build`).
-    return run('./node_modules/.bin/testem', [ 'ci', '-f', 'testem.dist.json', '--port', '7000' ]);
+    return run('./node_modules/.bin/testem', [ 'ci', '-f', 'testem.dist.js', '--port', '7000' ]);
   }).then(function() {
     if (process.env.TRAVIS_JOB_NUMBER) {
       return run('./node_modules/.bin/ember', ['browserstack:results']);

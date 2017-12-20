@@ -40,7 +40,7 @@
     "test:blueprints": "node node-tests/nodetest-runner.js",
     "test:node": "node bin/run-node-tests.js",
     "test:browserstack": "node bin/run-browserstack-tests.js",
-    "test:testem": "testem -f testem.dist.json"
+    "test:testem": "testem -f testem.dist.js"
   },
   "dependencies": {
     "broccoli-funnel": "^2.0.1",
