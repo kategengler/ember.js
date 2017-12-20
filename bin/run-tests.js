@@ -327,7 +327,6 @@ switch (process.env.TEST_SUITE) {
     console.log('suite: browserstack');
     require('./run-browserstack-tests');
     break;
-    break;
   case 'code-quality':
     testFunctions.push(codeQualityChecks);
     runAndExit();
