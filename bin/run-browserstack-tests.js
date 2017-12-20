@@ -44,13 +44,15 @@ RSVP.resolve()
     // we do not have to do a double build (by the time this is run
     // we have already ran `ember build`).
     return run('./node_modules/.bin/testem', [ 'ci', '-f', 'testem.dist.js', '--port', '7000' ]);
-  }).then(function() {
-    if (process.env.TRAVIS_JOB_NUMBER) {
-      return run('./node_modules/.bin/ember', ['browserstack:results']);
-    }
   })
   .finally(function() {
-    return run('./node_modules/.bin/ember', [ 'browserstack:disconnect' ]);
+    var promise = RSVP.resolve();
+    if (process.env.TRAVIS_JOB_NUMBER) {
+      promise = run('./node_modules/.bin/ember', ['browserstack:results']);
+    }
+    return promise.then(function() {
+      return run('./node_modules/.bin/ember', [ 'browserstack:disconnect' ]);
+    });
   })
   .catch(function(error) {
     console.log('error');
