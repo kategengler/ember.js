@@ -1,14 +1,15 @@
 var TapReporter = require('testem/lib/reporters/tap_reporter');
 
-function FailureOnlyReporter() {
+function FailureOnlyPerBrowserReporter() {
   TapReporter.apply(this, arguments);
   this._reportCount = 0;
+  this._resultsByBrowser = {};
 }
 
-FailureOnlyReporter.prototype = Object.create(TapReporter.prototype);
-FailureOnlyReporter.prototype.constructor = FailureOnlyReporter;
+FailureOnlyPerBrowserReporter.prototype = Object.create(TapReporter.prototype);
+FailureOnlyPerBrowserReporter.prototype.constructor = FailureOnlyPerBrowserReporter;
 
-FailureOnlyReporter.prototype.display = function(prefix, result) {
+FailureOnlyPerBrowserReporter.prototype.display = function(prefix, result) {
   this._reportCount++;
 
   if (!result.passed) {
@@ -16,16 +17,53 @@ FailureOnlyReporter.prototype.display = function(prefix, result) {
   }
 
   if (this._reportCount > 100) {
-    this.out.write('pass count: ' + this.pass);
+    this.out.write('pass count: ' + this.pass + '\n');
     this._reportCount = 0;
   }
+};
+
+FailureOnlyPerBrowserReporter.prototype.report = function(prefix, data) {
+  if (!this._resultsByBrowser[prefix]) {
+    this._resultsByBrowser[prefix] = {
+      total: 0,
+      pass: 0,
+      skipped: 0
+    }
+  }
+
+  this._resultsByBrowser[prefix].total++;
+  if (data.skipped) {
+    this._resultsByBrowser[prefix].skipped++;
+  } else if (data.passed) {
+    this._resultsByBrowser[prefix].pass++;
+  }
+
+  TapReporter.prototype.report.apply(this, arguments);
+};
+
+FailureOnlyPerBrowserReporter.prototype.summaryDisplay = function() {
+  var originalSummary = TapReporter.prototype.summaryDisplay.apply(this, arguments);
+  var lines = [];
+  var resultsByBrowser = this._resultsByBrowser;
+  Object.keys(resultsByBrowser).forEach(function(browser) {
+    var results = resultsByBrowser[browser];
+
+    lines.push('#');
+    lines.push('# Browser: ' + browser);
+    lines.push('# tests ' + results.total);
+    lines.push('# pass  ' + results.pass);
+    lines.push('# skip  ' + results.skipped);
+    lines.push('# fail  ' + (results.total - results.pass - results.skipped));
+  });
+  lines.push('#');
+  return lines.join('\n') + '\n' + originalSummary;
 };
 
 module.exports = {
   framework: "qunit",
   test_page: "dist/tests/index.html?hidepassed&hideskipped&timeout=60000",
   timeout: 540,
-  reporter: FailureOnlyReporter,
+  reporter: FailureOnlyPerBrowserReporter,
   browser_start_timeout: 600,
   parallel: 4,
   disable_watching: true,
