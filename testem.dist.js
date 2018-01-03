@@ -64,6 +64,7 @@ module.exports = {
   launch_in_dev: [],
   launch_in_ci: [
     "BS_Safari_Current",
+    "BS_Safari_Last",
     "BS_MS_Edge",
     "BS_IE_11",
     "BS_Chrome_Current"
