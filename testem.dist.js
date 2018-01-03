@@ -25,8 +25,8 @@ module.exports = {
   framework: "qunit",
   test_page: "dist/tests/index.html?hidepassed&hideskipped&timeout=60000",
   timeout: 540,
-  reporter: new FailureOnlyReporter(),
-  browser_start_timeout: 400,
+  reporter: FailureOnlyReporter,
+  browser_start_timeout: 600,
   parallel: 4,
   disable_watching: true,
   launchers: {
