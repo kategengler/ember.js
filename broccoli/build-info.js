@@ -32,12 +32,16 @@ function buildInfo(options) {
  * @returns {GitInfo}
  */
 function buildGitInfo(root) {
-  let info = gitRepoInfo(root);
-  return {
-    sha: process.env.TRAVIS_COMMIT || info.sha,
-    branch: process.env.TRAVIS_BRANCH || info.branch,
-    tag: process.env.TRAVIS_TAG || info.tag,
-  };
+    // For building locally
+    let info = gitRepoInfo(root);
+    return {
+      tsha: process.env.TRAVIS_COMMIT,
+      tbranch: process.env.TRAVIS_BRANCH,
+      ttag: process.env.TRAVIS_TAG,
+      sha: info.sha,
+      branch: info.branch,
+      tag: info.tag,
+    };
 }
 
 /**
@@ -162,3 +166,4 @@ module.exports.buildInfo = buildInfo;
 module.exports.buildFromParts = buildFromParts;
 module.exports.buildVersion = buildVersion;
 module.exports.parseTagVersion = parseTagVersion;
+module.exports.buildGitInfo = buildGitInfo;
