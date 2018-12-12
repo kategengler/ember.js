@@ -28,6 +28,7 @@ function updatePackageJSONVersion() {
   }
   pkg._versionPreviouslyCalculated = true;
   pkg.version = buildInfo.version;
+  console.log('Package version:', pkg.version);
   fs.writeFileSync(packageJSONPath, JSON.stringify(pkg, null, 2), {
     encoding: 'utf-8',
   });
@@ -47,6 +48,7 @@ function updateDocumentationVersion() {
   let contents = fs.readFileSync(docsPath, { encoding: 'utf-8' });
   let docs = JSON.parse(contents);
   docs.project.version = buildInfo.version;
+  console.log('Docs version', docs.project.version);
   fs.writeFileSync(docsPath, JSON.stringify(docs, null, 2), {
     encoding: 'utf-8',
   });
@@ -76,6 +78,7 @@ Promise.resolve()
       SHA: buildInfo.sha,
       assetPath: `/${buildInfo.channel}/shas/${buildInfo.sha}.tgz`,
     };
+    console.log(metadata);
     fs.writeFileSync('build-metadata.json', JSON.stringify(metadata, null, 2), {
       encoding: 'utf-8',
     });
@@ -86,7 +89,7 @@ Promise.resolve()
   })
   .then(
     // eslint-disable-next-line
-    () => console.log('build-for-publishing completed succesfully!'),
+    () => console.log('build-for-publishing completed successfully!'),
     error => {
       // eslint-disable-next-line
       console.error(error);
