@@ -84,6 +84,7 @@ QUnit.module('buildFromParts', () => {
         packageVersion: '3.4.4',
         tagVersion: null,
         version: '3.4.4-canary+f572d396',
+        isBuildForTag: false,
       },
     },
     {
@@ -105,6 +106,7 @@ QUnit.module('buildFromParts', () => {
         packageVersion: '3.4.4',
         tagVersion: '3.4.4-beta.2',
         version: '3.4.4-beta+f572d396',
+        isBuildForTag: false,
       },
     },
     {
@@ -126,6 +128,7 @@ QUnit.module('buildFromParts', () => {
         packageVersion: '3.4.4',
         tagVersion: '3.4.4-beta.2',
         version: '3.4.4-beta.2',
+        isBuildForTag: true,
       },
     },
     {
@@ -147,6 +150,7 @@ QUnit.module('buildFromParts', () => {
         packageVersion: '3.4.4',
         tagVersion: undefined,
         version: '3.4.4-a--funky--branch+f572d396',
+        isBuildForTag: false,
       },
     },
   ].forEach(({ args, expected }) => {
