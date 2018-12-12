@@ -85,9 +85,8 @@ function buildFromParts(packageVersion, gitInfo, isCI = false) {
         : 'canary'
       : branch && escapeSemVerIdentifier(branch);
 
-  let version = isTagBuild(tag, branch, isCI)
-    ? tagVersion
-    : buildVersion(packageVersion, shortSha, channel);
+  let isBuildForTag = isTagBuild(tag, branch, isCI);
+  let version = isBuildForTag ? tagVersion : buildVersion(packageVersion, shortSha, channel);
 
   return {
     tag,
@@ -98,6 +97,7 @@ function buildFromParts(packageVersion, gitInfo, isCI = false) {
     packageVersion,
     tagVersion,
     version,
+    isBuildForTag,
   };
 }
 
