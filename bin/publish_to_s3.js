@@ -17,15 +17,13 @@ const buildInfo = require('../broccoli/build-info').buildInfo();
 // ./bin/publish_to_s3.js
 // ```
 
-if (!buildInfo.tag) {
-  const S3Publisher = require('ember-publisher');
-  const configPath = require('path').join(__dirname, '../config/s3ProjectConfig.js');
+const S3Publisher = require('ember-publisher');
+const configPath = require('path').join(__dirname, '../config/s3ProjectConfig.js');
 
-  let publisher = new S3Publisher({ projectConfigPath: configPath });
+let publisher = new S3Publisher({ projectConfigPath: configPath });
 
-  publisher.currentBranch = function() {
-    return buildInfo.channel;
-  };
+publisher.currentBranch = function() {
+  return buildInfo.channel;
+};
 
-  publisher.publish();
-}
+publisher.publish();
