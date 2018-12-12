@@ -42,5 +42,5 @@ jobs:
       env:
       - PUBLISH=true
       script:
-        - node bin/build_for_publishing.js
+        - node bin/build-for-publishing.js
         - node bin/publish_to_s3.js
