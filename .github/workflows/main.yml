@@ -36,12 +36,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       env: 
-        BROWSERSTACK_USERNAME=emberjscoreteam1
-        BROWSERSTACK_ACCESS_KEY=YsPxXKcahx9XszyHS2Gr
-        DISABLE_SOURCE_MAPS=true
-        BROCCOLI_ENV=production
-        S3_BUCKET_NAME=builds.emberjs.com 
-        TEST_SUITE=each-package
+        BROWSERSTACK_USERNAME: emberjscoreteam1
+        BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
+        DISABLE_SOURCE_MAPS: true
+        BROCCOLI_ENV: production
+        S3_BUCKET_NAME: builds.emberjs.com 
+        TEST_SUITE: each-package
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -60,12 +60,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       env: 
-        BROWSERSTACK_USERNAME=emberjscoreteam1
-        BROWSERSTACK_ACCESS_KEY=YsPxXKcahx9XszyHS2Gr
-        DISABLE_SOURCE_MAPS=true
-        BROCCOLI_ENV=production
-        S3_BUCKET_NAME=builds.emberjs.com 
-        SHOULD_TRANSPILE=true
+        BROWSERSTACK_USERNAME: emberjscoreteam1
+        BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
+        DISABLE_SOURCE_MAPS: true
+        BROCCOLI_ENV: production
+        S3_BUCKET_NAME: builds.emberjs.com 
+        SHOULD_TRANSPILE: true
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -84,11 +84,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       env: 
-        BROWSERSTACK_USERNAME=emberjscoreteam1
-        BROWSERSTACK_ACCESS_KEY=YsPxXKcahx9XszyHS2Gr
-        DISABLE_SOURCE_MAPS=true
-        BROCCOLI_ENV=production
-        S3_BUCKET_NAME=builds.emberjs.com 
+        BROWSERSTACK_USERNAME: emberjscoreteam1
+        BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
+        DISABLE_SOURCE_MAPS: true
+        BROCCOLI_ENV: production
+        S3_BUCKET_NAME: builds.emberjs.com 
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -107,12 +107,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       env: 
-        BROWSERSTACK_USERNAME=emberjscoreteam1
-        BROWSERSTACK_ACCESS_KEY=YsPxXKcahx9XszyHS2Gr
-        DISABLE_SOURCE_MAPS=true
-        BROCCOLI_ENV=production
-        S3_BUCKET_NAME=builds.emberjs.com 
-        TEST_SUITE=old-jquery-and-extend-prototypes
+        BROWSERSTACK_USERNAME: emberjscoreteam1
+        BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
+        DISABLE_SOURCE_MAPS: true
+        BROCCOLI_ENV: production
+        S3_BUCKET_NAME: builds.emberjs.com 
+        TEST_SUITE: old-jquery-and-extend-prototypes
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -131,11 +131,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       env: 
-        BROWSERSTACK_USERNAME=emberjscoreteam1
-        BROWSERSTACK_ACCESS_KEY=YsPxXKcahx9XszyHS2Gr
-        DISABLE_SOURCE_MAPS=true
-        BROCCOLI_ENV=production
-        S3_BUCKET_NAME=builds.emberjs.com 
+        BROWSERSTACK_USERNAME: emberjscoreteam1
+        BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
+        DISABLE_SOURCE_MAPS: true
+        BROCCOLI_ENV: production
+        S3_BUCKET_NAME: builds.emberjs.com 
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -154,11 +154,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       env: 
-        BROWSERSTACK_USERNAME=emberjscoreteam1
-        BROWSERSTACK_ACCESS_KEY=YsPxXKcahx9XszyHS2Gr
-        DISABLE_SOURCE_MAPS=true
-        BROCCOLI_ENV=production
-        S3_BUCKET_NAME=builds.emberjs.com 
+        BROWSERSTACK_USERNAME: emberjscoreteam1
+        BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
+        DISABLE_SOURCE_MAPS: true
+        BROCCOLI_ENV: production
+        S3_BUCKET_NAME: builds.emberjs.com 
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -177,11 +177,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       env: 
-        BROWSERSTACK_USERNAME=emberjscoreteam1
-        BROWSERSTACK_ACCESS_KEY=YsPxXKcahx9XszyHS2Gr
-        DISABLE_SOURCE_MAPS=true
-        BROCCOLI_ENV=production
-        S3_BUCKET_NAME=builds.emberjs.com 
+        BROWSERSTACK_USERNAME: emberjscoreteam1
+        BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
+        DISABLE_SOURCE_MAPS: true
+        BROCCOLI_ENV: production
+        S3_BUCKET_NAME: builds.emberjs.com 
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
