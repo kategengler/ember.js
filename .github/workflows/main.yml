@@ -10,7 +10,7 @@ on:
       - release*
       - lts*
     tags:
-      - *
+      - '*'
   schedule:
     - cron:  '0 3 * * *' # daily, 3am
 
