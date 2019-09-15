@@ -214,11 +214,7 @@ jobs:
   blueprint-test:
     name: Blueprint Tests
     runs-on: ubuntu-latest
-    steps:
-      env:       
-        DISABLE_SOURCE_MAPS: true
-        BROCCOLI_ENV: production
-        S3_BUCKET_NAME: builds.emberjs.com 
+    steps:     
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
