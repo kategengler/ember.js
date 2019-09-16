@@ -47,14 +47,12 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
           TEST_SUITE: each-package
         run: yarn ember build
       - name: test
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
           TEST_SUITE: each-package
         run: yarn test
 
@@ -73,20 +71,16 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
         env:
-          BROWSERSTACK_USERNAME: emberjscoreteam1
-          BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
           SHOULD_TRANSPILE: true
         run: yarn ember build
       - name: test:browserstack
         env:
-          BROWSERSTACK_USERNAME: emberjscoreteam1
-          BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
+          BROWSERSTACK_USERNAME: emberjscoreteam1
+          BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
           SHOULD_TRANSPILE: true
         run: yarn test:browserstack
 
@@ -107,13 +101,11 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember build -prod
       - name: test
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn test
 
   extend-prototypes-test:
@@ -133,14 +125,12 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
           TEST_SUITE: extend-prototypes
         run: yarn ember build
       - name: test
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
           TEST_SUITE: extend-prototypes
         run: yarn test
 
@@ -161,13 +151,11 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember build -prod
       - name: test
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn test:node
 
   blueprint-test:
@@ -187,13 +175,11 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember build
       - name: test
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn test:blueprints
 
   browser-test:
@@ -213,11 +199,9 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember build
       - name: test
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember test -c testem.travis-browsers.js
