@@ -14,28 +14,27 @@ on:
   schedule:
     - cron:  '0 3 * * *' # daily, 3am
 
-parts:
-  checkout: &checkout
-    uses: actions/checkout@v1
+checkout: &checkout
+  uses: actions/checkout@v1
 
-  setup-node: &setup-node
-    uses: actions/setup-node@v1
-    with:
-      node-version: 10.x
+setup-node: &setup-node
+  uses: actions/setup-node@v1
+  with:
+    node-version: 10.x
 
-  install-deps: &install-deps
-    name: install dependencies
-    run: yarn install --frozen-lockfile --non-interactive
+install-deps: &install-deps
+  name: install dependencies
+  run: yarn install --frozen-lockfile --non-interactive
 
-  default-env: &default-env
-    DISABLE_SOURCE_MAPS: true
-    BROCCOLI_ENV: production
+default-env: &default-env
+  DISABLE_SOURCE_MAPS: true
+  BROCCOLI_ENV: production
 
-  download-dist: &download-dist
-    uses: actions/download-artifact@v1
-    with:
-      name: dist
-      path: dist
+download-dist: &download-dist
+  uses: actions/download-artifact@v1
+  with:
+    name: dist
+    path: dist
 
 jobs:
   lint:
