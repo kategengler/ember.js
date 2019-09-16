@@ -40,18 +40,8 @@ jobs:
         with:
           node-version: 10.x
       - name: install yarn
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
-          TEST_SUITE: each-package
         run: npm install -g yarn
       - name: install dependencies
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
-          TEST_SUITE: each-package
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
         env:
@@ -61,6 +51,11 @@ jobs:
           TEST_SUITE: each-package
         run: yarn ember build
       - name: test
+        env:
+          DISABLE_SOURCE_MAPS: true
+          BROCCOLI_ENV: production
+          S3_BUCKET_NAME: builds.emberjs.com
+          TEST_SUITE: each-package
         run: yarn test
 
   browserstack-test:
@@ -73,22 +68,8 @@ jobs:
         with:
           node-version: 10.x
       - name: install yarn
-        env:
-          BROWSERSTACK_USERNAME: emberjscoreteam1
-          BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
-          SHOULD_TRANSPILE: true
         run: npm install -g yarn
       - name: install dependencies
-        env:
-          BROWSERSTACK_USERNAME: emberjscoreteam1
-          BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
-          SHOULD_TRANSPILE: true
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
         env:
@@ -119,16 +100,8 @@ jobs:
         with:
           node-version: 10.x
       - name: install yarn
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: npm install -g yarn
       - name: install dependencies
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
         env:
@@ -153,18 +126,8 @@ jobs:
         with:
           node-version: 10.x
       - name: install yarn
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
-          TEST_SUITE: extend-prototypes
         run: npm install -g yarn
       - name: install dependencies
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
-          TEST_SUITE: extend-prototypes
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
         env:
@@ -191,16 +154,8 @@ jobs:
         with:
           node-version: 8.x
       - name: install yarn
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: npm install -g yarn
       - name: install dependencies
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
         env:
@@ -225,16 +180,8 @@ jobs:
         with:
           node-version: 8.x
       - name: install yarn
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: npm install -g yarn
       - name: install dependencies
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
         env:
@@ -259,16 +206,8 @@ jobs:
         with:
           node-version: 10.x
       - name: install yarn
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: npm install -g yarn
       - name: install dependencies
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
         env:
