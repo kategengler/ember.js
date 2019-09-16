@@ -142,7 +142,7 @@ jobs:
         run: yarn test
 
   extend-prototypes-test:
-    name: Old Jquery and Extend Prototypes
+    name: Extend Prototypes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
