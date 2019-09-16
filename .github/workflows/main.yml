@@ -33,9 +33,9 @@ _actions:
 
   download-dist: &download-dist
     uses: actions/download-artifact@v1
-      with:
-        name: dist
-        path: dist
+    with:
+      name: dist
+      path: dist
 
 jobs:
   lint:
