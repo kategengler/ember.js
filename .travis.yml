@@ -89,7 +89,7 @@ jobs:
         - yarn test
 
     - name: Old Jquery and Extend Prototypes
-      env: TEST_SUITE=old-jquery-and-extend-prototypes
+      env: TEST_SUITE=extend-prototypes
       script:
         - yarn ember build
         - yarn test
