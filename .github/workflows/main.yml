@@ -14,7 +14,7 @@ on:
   schedule:
     - cron:  '0 3 * * *' # daily, 3am
 
-_actions:
+parts:
   checkout: &checkout
     uses: actions/checkout@v1
 
