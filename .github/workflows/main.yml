@@ -44,6 +44,11 @@ jobs:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
         run: yarn ember build
+      - name: Upload build
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist
       - name: test
         env:
           TEST_SUITE: each-package
@@ -83,11 +88,10 @@ jobs:
           node-version: 10.x
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
-      - name: build
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-        run: yarn ember build -prod
+      - uses: actions/download-artifact@v1
+          with:
+            name: dist
+            path: dist
       - name: test
         run: yarn test
 
@@ -102,11 +106,10 @@ jobs:
           node-version: 10.x
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
-      - name: build
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-        run: yarn ember build
+      - uses: actions/download-artifact@v1
+          with:
+            name: dist
+            path: dist
       - name: test
         env:
           TEST_SUITE: extend-prototypes
@@ -142,10 +145,10 @@ jobs:
           node-version: 8.x
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
-      - name: build
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
+      - uses: actions/download-artifact@v1
+          with:
+            name: dist
+            path: dist
         run: yarn ember build
       - name: test
         run: yarn test:blueprints
@@ -161,10 +164,9 @@ jobs:
           node-version: 10.x
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
-      - name: build
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-        run: yarn ember build
+      - uses: actions/download-artifact@v1
+          with:
+            name: dist
+            path: dist
       - name: test
         run: yarn ember test -c testem.travis-browsers.js
