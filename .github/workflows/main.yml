@@ -30,39 +30,39 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
     - name: linting
       run: yarn lint
-      
+
   basic-test:
     name: Debug and Prebuilt (All Tests by Package + Canary Features + Optional Jquery)
     runs-on: ubuntu-latest
-    steps:   
+    steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 10.x    
+          node-version: 10.x
       - name: install yarn
-        env:         
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
           TEST_SUITE: each-package
         run: npm install -g yarn
       - name: install dependencies
-        env:         
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
           TEST_SUITE: each-package
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
-        env:         
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
           TEST_SUITE: each-package
         run: yarn ember build
       - name: test
         run: yarn test
-      
+
   browserstack-test:
     name: Browserstack Tests (Safari, Edge, IE11)
     runs-on: ubuntu-latest
@@ -70,41 +70,41 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 10.x    
+          node-version: 10.x
       - name: install yarn
-        env: 
+        env:
           BROWSERSTACK_USERNAME: emberjscoreteam1
           BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
           SHOULD_TRANSPILE: true
         run: npm install -g yarn
       - name: install dependencies
-        env: 
+        env:
           BROWSERSTACK_USERNAME: emberjscoreteam1
           BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
           SHOULD_TRANSPILE: true
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
-        env: 
+        env:
           BROWSERSTACK_USERNAME: emberjscoreteam1
           BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
           SHOULD_TRANSPILE: true
         run: yarn ember build
       - name: test:browserstack
-        env: 
+        env:
           BROWSERSTACK_USERNAME: emberjscoreteam1
           BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
           SHOULD_TRANSPILE: true
         run: yarn test:browserstack
 
@@ -115,30 +115,30 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 10.x    
+          node-version: 10.x
       - name: install yarn
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: npm install -g yarn
       - name: install dependencies
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember build -prod
       - name: test
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn test
 
   old-jquery-test:
@@ -148,131 +148,131 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 10.x    
+          node-version: 10.x
       - name: install yarn
-        env:       
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
-          TEST_SUITE: old-jquery-and-extend-prototypes
+          S3_BUCKET_NAME: builds.emberjs.com
+          TEST_SUITE: extend-prototypes
         run: npm install -g yarn
       - name: install dependencies
-        env:       
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
-          TEST_SUITE: old-jquery-and-extend-prototypes
+          S3_BUCKET_NAME: builds.emberjs.com
+          TEST_SUITE: extend-prototypes
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
-        env:       
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
-          TEST_SUITE: old-jquery-and-extend-prototypes
+          S3_BUCKET_NAME: builds.emberjs.com
+          TEST_SUITE: extend-prototypes
         run: yarn ember build
       - name: test
-        env:       
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
-          TEST_SUITE: old-jquery-and-extend-prototypes
+          S3_BUCKET_NAME: builds.emberjs.com
+          TEST_SUITE: extend-prototypes
         run: yarn test
-        
+
   node-test:
     name: Node.js Tests
     runs-on: ubuntu-latest
-    steps:      
+    steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 8.x    
+          node-version: 8.x
       - name: install yarn
-        env: 
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: npm install -g yarn
       - name: install dependencies
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember build -prod
       - name: test
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn test:node
-        
+
   blueprint-test:
     name: Blueprint Tests
     runs-on: ubuntu-latest
-    steps:     
+    steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 8.x    
+          node-version: 8.x
       - name: install yarn
-        env:       
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: npm install -g yarn
       - name: install dependencies
-        env:       
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
-        env:       
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember build
       - name: test
-        env:       
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn test:blueprints
 
   browser-test:
     name: Browser Tests (Firefox)
     runs-on: ubuntu-latest
-    steps:   
+    steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 10.x    
+          node-version: 10.x
       - name: install yarn
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: npm install -g yarn
       - name: install dependencies
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember build
       - name: test
-        env:        
+        env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          S3_BUCKET_NAME: builds.emberjs.com 
+          S3_BUCKET_NAME: builds.emberjs.com
         run: yarn ember test -c testem.travis-browsers.js

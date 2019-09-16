@@ -83,12 +83,6 @@ function generateStandardTests() {
   testFunctions.push(() => run('enableoptionalfeatures=true'));
 }
 
-function generateOldJQueryTests() {
-  testFunctions.push(() => run('jquery=1.10.2'));
-  testFunctions.push(() => run('jquery=1.12.4'));
-  testFunctions.push(() => run('jquery=2.2.4'));
-}
-
 function generateExtendPrototypeTests() {
   testFunctions.push(() => run('extendprototypes=true'));
   testFunctions.push(() => run('extendprototypes=true&enableoptionalfeatures=true'));
@@ -131,15 +125,13 @@ switch (process.env.TEST_SUITE) {
     generateEachPackageTests();
     runAndExit();
     break;
-  case 'old-jquery-and-extend-prototypes':
-    console.log('suite: old-jquery-and-extend-prototypes');
-    generateOldJQueryTests();
+  case 'extend-prototypes':
+    console.log('suite: extend-prototypes');
     generateExtendPrototypeTests();
     runAndExit();
     break;
   case 'all':
     console.log('suite: all');
-    generateOldJQueryTests();
     generateExtendPrototypeTests();
     generateEachPackageTests();
     runAndExit();
