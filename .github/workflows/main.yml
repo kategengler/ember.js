@@ -89,9 +89,9 @@ jobs:
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - uses: actions/download-artifact@v1
-          with:
-            name: dist
-            path: dist
+        with:
+          name: dist
+          path: dist
       - name: test
         run: yarn test
 
@@ -107,9 +107,9 @@ jobs:
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - uses: actions/download-artifact@v1
-          with:
-            name: dist
-            path: dist
+        with:
+          name: dist
+          path: dist
       - name: test
         env:
           TEST_SUITE: extend-prototypes
@@ -146,9 +146,9 @@ jobs:
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - uses: actions/download-artifact@v1
-          with:
-            name: dist
-            path: dist
+        with:
+          name: dist
+          path: dist
         run: yarn ember build
       - name: test
         run: yarn test:blueprints
@@ -165,8 +165,8 @@ jobs:
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - uses: actions/download-artifact@v1
-          with:
-            name: dist
-            path: dist
+        with:
+          name: dist
+          path: dist
       - name: test
         run: yarn ember test -c testem.travis-browsers.js
