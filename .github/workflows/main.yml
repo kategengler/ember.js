@@ -130,6 +130,7 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
+        run: yarn ember build -prod
       - name: test
         run: yarn test:node
 
