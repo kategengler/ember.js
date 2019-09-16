@@ -24,8 +24,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 10.x
-    - name: install yarn
-      run: npm install -g yarn
     - name: install dependencies
       run: yarn install --frozen-lockfile --non-interactive
     - name: linting
@@ -39,8 +37,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
@@ -65,8 +61,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
@@ -93,8 +87,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
@@ -117,8 +109,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
@@ -143,8 +133,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 8.x
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
@@ -167,8 +155,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 8.x
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
@@ -191,8 +177,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - name: install yarn
-        run: npm install -g yarn
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - name: build
