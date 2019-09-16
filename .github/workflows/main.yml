@@ -43,12 +43,9 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          TEST_SUITE: each-package
         run: yarn ember build
       - name: test
         env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
           TEST_SUITE: each-package
         run: yarn test
 
@@ -71,11 +68,8 @@ jobs:
         run: yarn ember build
       - name: test:browserstack
         env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
           BROWSERSTACK_USERNAME: emberjscoreteam1
           BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
-          SHOULD_TRANSPILE: true
         run: yarn test:browserstack
 
   production-test:
@@ -95,9 +89,6 @@ jobs:
           BROCCOLI_ENV: production
         run: yarn ember build -prod
       - name: test
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
         run: yarn test
 
   extend-prototypes-test:
@@ -115,12 +106,9 @@ jobs:
         env:
           DISABLE_SOURCE_MAPS: true
           BROCCOLI_ENV: production
-          TEST_SUITE: extend-prototypes
         run: yarn ember build
       - name: test
         env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
           TEST_SUITE: extend-prototypes
         run: yarn test
 
@@ -141,9 +129,6 @@ jobs:
           BROCCOLI_ENV: production
         run: yarn ember build -prod
       - name: test
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
         run: yarn test:node
 
   blueprint-test:
@@ -163,9 +148,6 @@ jobs:
           BROCCOLI_ENV: production
         run: yarn ember build
       - name: test
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
         run: yarn test:blueprints
 
   browser-test:
@@ -185,7 +167,4 @@ jobs:
           BROCCOLI_ENV: production
         run: yarn ember build
       - name: test
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
         run: yarn ember test -c testem.travis-browsers.js
