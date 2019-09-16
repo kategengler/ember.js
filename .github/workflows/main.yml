@@ -141,7 +141,7 @@ jobs:
           S3_BUCKET_NAME: builds.emberjs.com
         run: yarn test
 
-  old-jquery-test:
+  extend-prototypes-test:
     name: Old Jquery and Extend Prototypes
     runs-on: ubuntu-latest
     steps:
