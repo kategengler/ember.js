@@ -189,3 +189,15 @@ jobs:
           path: dist
       - name: test
         run: yarn ember test -c testem.travis-browsers.js
+
+  deploy:
+    name: Deploy to npm
+    needs: [basic-test, lint, browserstack-test, production-test, production-debug-render-test, extend-prototypes-test, node-test, blueprint-test, browser-test]
+    if: github.event_name == 'push'
+    env:
+      PUBLISH: true
+    steps:
+      - name: Test available
+        run: |
+          echo ${GITHUB_REF##*/}
+          echo ${GITHUB_EVENT_NAME}
