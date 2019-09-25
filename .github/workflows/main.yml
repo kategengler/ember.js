@@ -96,6 +96,25 @@ jobs:
       - name: test
         run: yarn test
 
+  production-debug-render-test:
+    name: Production (All Tests + Canary Features with Debug Render Tree)
+    runs-on: ubuntu-latest
+    needs: [basic-test, lint]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: build
+        env:
+          DISABLE_SOURCE_MAPS: true
+          BROCCOLI_ENV: production
+        run: yarn ember build -prod
+      - name: test
+        run: yarn test
+
   extend-prototypes-test:
     name: Extend Prototypes
     runs-on: ubuntu-latest
