@@ -81,7 +81,7 @@ function buildGitInfo(root) {
  */
 function buildFromParts(packageVersion, gitInfo, isCI = false, travisBranch = '') {
   let { tag, branch, sha } = gitInfo;
-
+  console.log('gitInfo', gitInfo);
   let tagVersion = parseTagVersion(tag);
   let shortSha = sha.slice(0, 8);
   branch = travisBranch || branch; // Travis builds are always detached
