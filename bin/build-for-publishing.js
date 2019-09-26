@@ -53,11 +53,11 @@ function updateDocumentationVersion() {
 }
 
 Promise.resolve()
-  .then(() => {
-    updatePackageJSONVersion();
-    // ensures that we tag this correctly
-    return exec('auto-dist-tag', ['--write']);
-  })
+  // .then(() => {
+  //   updatePackageJSONVersion();
+  //   // ensures that we tag this correctly
+  //   return exec('auto-dist-tag', ['--write']);
+  // })
   // .then(() => {
   //   // do a production build
   //   return exec('yarn', ['build']);
@@ -79,7 +79,8 @@ Promise.resolve()
     fs.writeFileSync('build-metadata.json', JSON.stringify(metadata, null, 2), {
       encoding: 'utf-8',
     });
-    console.log(metadata);
+    console.log('build info', buildInfo);
+    console.log('metadata', metadata);
     // using npm pack here because `yarn pack` does not honor the `package.json`'s `files`
     // property properly, and therefore the tarball generated is quite large (~7MB).
     return exec('npm', ['pack']);
