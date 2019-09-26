@@ -199,4 +199,6 @@ jobs:
       - name: Deploy
         env:
           PUBLISH: true
-        run: ../../bin/publish_builds
+        run: |
+          ls -lash
+          ./bin/publish_builds
