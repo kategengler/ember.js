@@ -206,5 +206,5 @@ jobs:
         env:
           PUBLISH: true
         run: |
-          ls -lash
+          echo ${CI}
           ./bin/publish_builds
