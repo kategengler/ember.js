@@ -58,16 +58,16 @@ Promise.resolve()
     // ensures that we tag this correctly
     return exec('auto-dist-tag', ['--write']);
   })
-  .then(() => {
-    // do a production build
-    return exec('yarn', ['build']);
-  })
-  .then(() => {
-    // generate docs
-    return exec('yarn', ['docs']).then(() => {
-      updateDocumentationVersion();
-    });
-  })
+  // .then(() => {
+  //   // do a production build
+  //   return exec('yarn', ['build']);
+  // })
+  // .then(() => {
+  //   // generate docs
+  //   return exec('yarn', ['docs']).then(() => {
+  //     updateDocumentationVersion();
+  //   });
+  // })
   .then(() => {
     // generate build-metadata.json
     const metadata = {
@@ -79,7 +79,7 @@ Promise.resolve()
     fs.writeFileSync('build-metadata.json', JSON.stringify(metadata, null, 2), {
       encoding: 'utf-8',
     });
-
+    console.log(metadata);
     // using npm pack here because `yarn pack` does not honor the `package.json`'s `files`
     // property properly, and therefore the tarball generated is quite large (~7MB).
     return exec('npm', ['pack']);

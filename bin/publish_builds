@@ -6,8 +6,7 @@ set -e
 GITHUB_BRANCH=${GITHUB_REF##*/}
 echo -e "CURRENT_BRANCH: ${GITHUB_BRANCH}\n"
 
-#### TODO UNCOMMENT
-#node ./bin/build-for-publishing.js
+node ./bin/build-for-publishing.js
 
 #### TODO UNCOMMENT
 #node ./bin/publish_to_s3.js
