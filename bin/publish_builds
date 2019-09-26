@@ -3,22 +3,27 @@
 # ensure the first failure, stops the script
 set -e
 
-echo -e "CURRENT_BRANCH: ${GITHUB_REF##*/}\n"
+GITHUB_BRANCH=${GITHUB_REF##*/}
+echo -e "CURRENT_BRANCH: ${GITHUB_BRANCH}\n"
 
-node ./bin/build-for-publishing.js
+#### TODO UNCOMMENT
+#node ./bin/build-for-publishing.js
 
-node ./bin/publish_to_s3.js
+#### TODO UNCOMMENT
+#node ./bin/publish_to_s3.js
 
 #### NPM PUBLISHING
-if [[ "$TRAVIS_TAG" =~ ^v[0-9.]+ ]]; then
-  echo -e "CURRENT_TAG: ${TRAVIS_TAG}\n"
-  echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}"> ~/.npmrc
+if [[ "$GITHUB_BRANCH" =~ ^v[0-9.]+ ]]; then
+  echo -e "CURRENT_TAG: ${GITHUB_BRANCH}\n"
+  #### TODO UNCOMMENT
+  #echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}"> ~/.npmrc
 
-  NPM_USER=$(npm whoami)
-  echo -e "Publishing to npm as $NPM_USER...\n"
+  #NPM_USER=$(npm whoami)
+  #echo -e "Publishing to npm as $NPM_USER...\n"
 
   # auto-dist-tag is ran by bin/build-for-publishing.js
   # this ensures that the `publishConfig` object in the `package.json`
   # indicates the correct tag to be published
-  npm publish
+#### TODO UNCOMMENT
+#### npm publish
 fi
