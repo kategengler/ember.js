@@ -23,9 +23,7 @@ function buildInfo(options) {
   let buildInfo = buildFromParts(
     packageVersion,
     gitInfo,
-    process.env.TRAVIS,
-    process.env.TRAVIS_BRANCH
-  );
+    process.env.GITHUB_ACTIONS);
   if (!options) {
     cached = buildInfo;
   }
@@ -81,10 +79,10 @@ function buildGitInfo(root) {
  */
 function buildFromParts(packageVersion, gitInfo, isCI = false, travisBranch = '') {
   let { tag, branch, sha } = gitInfo;
-
+  console.log(gitInfo);
+  return;
   let tagVersion = parseTagVersion(tag);
   let shortSha = sha.slice(0, 8);
-  branch = travisBranch || branch; // Travis builds are always detached
   let channel =
     branch === 'master'
       ? process.env.BUILD_TYPE === 'alpha'
