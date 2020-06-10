@@ -207,7 +207,7 @@ jobs:
       - name: install dependencies
         run: yarn install --frozen-lockfile --non-interactive
       - name: build for publish
-        run: bin/build-for-publishing.js
+        run: node bin/build-for-publishing.js
       - name: publish to npm
         run: npm publish
         env:
