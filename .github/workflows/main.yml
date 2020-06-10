@@ -201,7 +201,7 @@ jobs:
       - name: Test available
         env:
           PUBLISH: true
-          BRANCH_NAME: ${{github.ref}}##*/
+          BRANCH_NAME: ${{github.ref}}
         run: |
           echo "BRANCH NAME: " ${BRANCH_NAME}
           echo "GITHUB_REF: " ${GITHUB_REF##*/}
