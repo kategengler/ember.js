@@ -21,7 +21,11 @@ if (!buildInfo.isBuildForTag) {
   const S3Publisher = require('ember-publisher');
   const configPath = require('path').join(__dirname, '../config/s3ProjectConfig.js');
 
-  let publisher = new S3Publisher({ projectConfigPath: configPath });
+  let publisher = new S3Publisher({
+    projectConfigPath: configPath,
+    TRAVIS_TAG: buildInfo.tag,
+    TRAVIS_COMMIT: buildInfo.sha,
+  });
 
   publisher.currentBranch = function() {
     return buildInfo.channel;
