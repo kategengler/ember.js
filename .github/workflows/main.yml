@@ -19,7 +19,6 @@ jobs:
   lint:
     name: Linting
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -189,7 +188,6 @@ jobs:
         with:
           name: dist
           path: dist
-      - name: test
       - name: test
         run: yarn ember test -c testem.travis-browsers.js
 
