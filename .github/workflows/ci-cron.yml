@@ -28,7 +28,7 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           branch: cron-${{matrix.branch}}
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
       - name: List checks
         uses: actions/github-script@v2
         with:
