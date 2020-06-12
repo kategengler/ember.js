@@ -31,6 +31,8 @@ jobs:
           git config --local user.name 'Ember.js Cron CI'
           git add cron.txt
           git commit -m 'Add commit'
+          git rev-parse HEAD
+
       - name: Push branch
         uses: ad-m/github-push-action@v0.6.0
         with:
@@ -42,6 +44,7 @@ jobs:
         with:
           github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
+            console.log(github.sha);
             let res = await github.checks.listForRef({owner: 'kategengler', repo: 'ember.js', ref: github.sha});
             console.log(JSON.stringify(res, null, 2));
 #      - name: Wait for build
