@@ -9,7 +9,7 @@ on:
 
 jobs:
   push:
-    name: Push branch
+    name: Trigger cron build
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -34,7 +34,7 @@ jobs:
         with:
           github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
-            let res = await github.checks.listForRef({owner: 'kategengler', repo: 'ember.js', ref: 'master'});
+            let res = await github.checks.listForRef({owner: 'kategengler', repo: 'ember.js', ref: 'cron-beta'});
             console.log(JSON.stringify(res, null, 2));
 #      - name: Wait for build
 #        uses: fountainhead/action-wait-for-check@v1.0.0
