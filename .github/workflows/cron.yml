@@ -40,14 +40,21 @@ jobs:
           branch: cron-${{matrix.branch}}
           force: true
           github_token: ${{ secrets.PERSONAL_TOKEN }}
-      - name: List checks
-        uses: actions/github-script@v2
+#      - name: List checks
+#        uses: actions/github-script@v2
+#        with:
+#          github-token: ${{ secrets.PERSONAL_TOKEN }}
+#          script: |
+#            await new Promise(resolve => setTimeout(resolve, 5000));
+#            let res = await github.checks.listSuitesForRef({owner: context.repo.owner, repo: context.repo.repo, ref: process.env.SHA});
+#            console.log(JSON.stringify(res, null, 2));
+      - name: Wait for suite completion
+        uses: jitterbit/await-check-suites@v1
         with:
-          github-token: ${{ secrets.PERSONAL_TOKEN }}
-          script: |
-            await new Promise(resolve => setTimeout(resolve, 5000));
-            let res = await github.checks.listSuitesForRef({owner: context.repo.owner, repo: context.repo.repo, ref: process.env.SHA});
-            console.log(JSON.stringify(res, null, 2));
+          ref: ${{ env.SHA }}
+          appSlugFilter: github-actions
+          onlyFirstCheckSuite: true
+          timeoutSeconds: 600
 #      - name: Wait for build
 #        uses: fountainhead/action-wait-for-check@v1.0.0
 #        with:
