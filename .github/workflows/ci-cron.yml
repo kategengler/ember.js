@@ -35,7 +35,7 @@ jobs:
           github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
             let res = await github.checks.listForRef({owner: 'kategengler', repo: 'ember.js', ref: 'master'});
-            console.log(res);
+            console.log(JSON.stringify(res, null, 2));
 #      - name: Wait for build
 #        uses: fountainhead/action-wait-for-check@v1.0.0
 #        with:
