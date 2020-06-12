@@ -28,17 +28,17 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           branch: cron-${{matrix.branch}}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
       - name: List checks
         uses: actions/github-script@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
             let res = await github.checks.listForRef({'kategengler', 'ember.js', 'master'});
             console.log(res);
 #      - name: Wait for build
 #        uses: fountainhead/action-wait-for-check@v1.0.0
 #        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
+#          token: ${{ secrets.PERSONAL_TOKEN }}
 #          checkName: ci
 #          ref: ${{matrix.branch}}
