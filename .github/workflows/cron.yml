@@ -1,4 +1,4 @@
-name: CI
+name: Cron
 
 on:
   push:
@@ -24,6 +24,12 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           ref: ${{matrix.branch}}
+      - name: 'Placeholder commit'
+        run: |
+          touch cron.txt
+          git config --local user.email 'cron@example.com'
+          git config -- local user.name 'Ember.js Cron CI'
+          git commit -m 'Add commit' -a
       - name: Push branch
         uses: ad-m/github-push-action@v0.6.0
         with:
@@ -34,7 +40,7 @@ jobs:
         with:
           github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
-            let res = await github.checks.listForRef({owner: 'kategengler', repo: 'ember.js', ref: 'cron-beta'});
+            let res = await github.checks.listForRef({owner: 'kategengler', repo: 'ember.js', ref: github.sha});
             console.log(JSON.stringify(res, null, 2));
 #      - name: Wait for build
 #        uses: fountainhead/action-wait-for-check@v1.0.0
