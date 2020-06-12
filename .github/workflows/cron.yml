@@ -46,7 +46,7 @@ jobs:
           github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
             await new Promise(resolve => setTimeout(resolve, 5000));
-            let res = await github.checks.listForRef({owner: context.repo.owner, repo: context.repo.repo, ref: process.env.SHA});
+            let res = await github.checks.listSuitesForRef({owner: context.repo.owner, repo: context.repo.repo, ref: process.env.SHA});
             console.log(JSON.stringify(res, null, 2));
 #      - name: Wait for build
 #        uses: fountainhead/action-wait-for-check@v1.0.0
