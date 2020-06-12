@@ -28,7 +28,7 @@ jobs:
         run: |
           touch cron.txt
           git config --local user.email 'cron@example.com'
-          git config --local user.name 'Ember.js Cron CI
+          git config --local user.name 'Ember.js Cron CI'
           git add cron.txt
           git commit -m 'Add commit'
       - name: Push branch
