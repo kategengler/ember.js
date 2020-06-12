@@ -31,7 +31,8 @@ jobs:
           git config --local user.name 'Ember.js Cron CI'
           git add cron.txt
           git commit -m 'Add commit'
-          git rev-parse HEAD
+          export SHA=`git rev-parse HEAD`
+          echo "::set-env name="SHA::$SHA"
 
       - name: Push branch
         uses: ad-m/github-push-action@v0.6.0
@@ -44,7 +45,7 @@ jobs:
         with:
           github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
-            let res = await github.checks.listForRef({owner: context.repo.owner, repo: context.repo.repo, ref: context.sha});
+            let res = await github.checks.listForRef({owner: context.repo.owner, repo: context.repo.repo, ref: process.env.SHA});
             console.log(JSON.stringify(res, null, 2));
 #      - name: Wait for build
 #        uses: fountainhead/action-wait-for-check@v1.0.0
