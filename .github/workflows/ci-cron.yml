@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  #schedule:
+   # - cron:  '0 3 * * *' # daily, 3am
+
+jobs:
+  push:
+    name: Push branch
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        branch:
+          - master
+          - beta
+          - release
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: ${{matrix.branch}}
+      - name: Push branch
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          branch: cron-${{matrix.branch}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: List checks
+        uses: actions/github-script@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            let res = await github.checks.listForRef({'kategengler', 'ember.js', 'master'});
+            console.log(res);
+#      - name: Wait for build
+#        uses: fountainhead/action-wait-for-check@v1.0.0
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          checkName: ci
+#          ref: ${{matrix.branch}}
