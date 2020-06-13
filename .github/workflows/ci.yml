@@ -9,11 +9,10 @@ on:
       # release branches
       - release*
       - lts*
+      - cron*
     tags:
       - 'v*'
   pull_request:
-  schedule:
-    - cron:  '0 3 * * *' # daily, 3am
 
 jobs:
   lint:
