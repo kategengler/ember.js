@@ -30,7 +30,7 @@ jobs:
           git config --local user.email 'cron@example.com'
           git config --local user.name 'Ember.js Cron CI'
           git add cron.txt
-          git commit -m 'Kick of cron run of CI'
+          git commit -m 'Kick off cron on "$(date +%Y-%m-%d)" run of CI for ${{matrix.branch}}'
           export SHA=`git rev-parse HEAD`
           echo "::set-env name=SHA::$SHA"
 
