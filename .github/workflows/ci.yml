@@ -6,11 +6,9 @@ on:
       - master
       - beta
       - release
-      # branches to test nightly
-      - 'cron*'
-      # release branches
-      - 'release*'
-      - 'lts*'
+      - release*
+      - lts*
+      - cron*
     tags:
       - 'v*'
   pull_request:
