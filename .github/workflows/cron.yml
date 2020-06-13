@@ -1,11 +1,8 @@
 name: Cron
 
 on:
-  push:
-    branches:
-      - master
-  #schedule:
-   # - cron:  '0 3 * * *' # daily, 3am
+  schedule:
+    - cron:  '0 7 * * *' # daily, 7am
 
 jobs:
   trigger-ci:
@@ -44,7 +41,7 @@ jobs:
           ref: ${{ env.SHA }}
           appSlugFilter: github-actions
           onlyFirstCheckSuite: true
-          timeoutSeconds: 600
+          timeoutSeconds: 1800
       - name: Cleanup
         if: ${{ success() }} || ${{ failure() }}
         run: git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN}}@github.com/${GITHUB_REPOSITORY} --delete cron-${{matrix.branch}}-${{env.SHA}} || true
