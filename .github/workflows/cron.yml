@@ -48,4 +48,4 @@ jobs:
           onlyFirstCheckSuite: true
           timeoutSeconds: 600
       - name: Cleanup
-        run: git push origin --delete cron-${{matrix.branch}}
+        run: git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN}}@github.com/${GITHUB_REPOSITORY} --delete cron-${{matrix.branch}}
