@@ -27,7 +27,7 @@ jobs:
     - name: install dependencies
       run: yarn install --frozen-lockfile --non-interactive
     - name: linting
-      run: yarn lint
+      run: false
 
 #  basic-test:
 #    name: Debug and Prebuilt (All Tests by Package + Canary Features + Optional Jquery)
