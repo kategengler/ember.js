@@ -210,25 +210,25 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-#
-#  publish:
-#    name: Publish channel to s3
-#    runs-on: ubuntu-latest
-#    needs: [basic-test, lint, browserstack-test, production-test, production-debug-render-test, extend-prototypes-test, node-test, blueprint-test, browser-test]
-#    if: github.event_name == 'push' && contains(github.ref, "cron") != true
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v1
-#        with:
-#          node-version: 10.x
-#      - name: install dependencies
-#        run: yarn install --frozen-lockfile --non-interactive
-#      - name: build for publish
-#        run: node bin/build-for-publishing.js
-#      - name: publish to s3
-#        run: node bin/publish_to_s3.js
-#        env:
-#          S3_BUCKET_NAME: 'builds.emberjs.com'
-#          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY}}
-#          S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID}}
-#
+
+  publish:
+    name: Publish channel to s3
+    runs-on: ubuntu-latest
+    needs: [basic-test, lint, browserstack-test, production-test, production-debug-render-test, extend-prototypes-test, node-test, blueprint-test, browser-test]
+    if: github.event_name == 'push' && contains(github.ref, 'cron') != true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: build for publish
+        run: node bin/build-for-publishing.js
+      - name: publish to s3
+        run: node bin/publish_to_s3.js
+        env:
+          S3_BUCKET_NAME: 'builds.emberjs.com'
+          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY}}
+          S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID}}
+
