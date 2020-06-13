@@ -1,4 +1,4 @@
-name: CI Cron
+name: Cron
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
    # - cron:  '0 3 * * *' # daily, 3am
 
 jobs:
-  push:
+  trigger-ci:
     name: Trigger cron build
     runs-on: ubuntu-latest
     strategy:
@@ -47,4 +47,4 @@ jobs:
           timeoutSeconds: 600
       - name: Cleanup
         if: ${{ success() }} || ${{ failure() }}
-        run: git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN}}@github.com/${GITHUB_REPOSITORY} --delete cron-${{matrix.branch}}-${{env.SHA}}
+        run: git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN}}@github.com/${GITHUB_REPOSITORY} --delete cron-${{matrix.branch}}-${{env.SHA}} || true
