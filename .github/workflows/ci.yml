@@ -7,10 +7,10 @@ on:
       - beta
       - release
       # branches to test nightly
-      - cron*
+      - 'cron*'
       # release branches
-      - release*
-      - lts*
+      - 'release*'
+      - 'lts*'
     tags:
       - 'v*'
   pull_request:
