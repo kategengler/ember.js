@@ -6,9 +6,11 @@ on:
       - master
       - beta
       - release
+      # branches to test nightly
+      - cron*
+      # release branches
       - release*
       - lts*
-      - cron*
     tags:
       - 'v*'
   pull_request:
@@ -18,14 +20,14 @@ jobs:
     name: Linting
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 10.x
-    - name: install dependencies
-      run: yarn install --frozen-lockfile --non-interactive
-    - name: linting
-      run: yarn lint
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: linting
+        run: yarn lint
 
   basic-test:
     name: Debug and Prebuilt (All Tests by Package + Canary Features + Optional Jquery)
