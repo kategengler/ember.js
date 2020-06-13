@@ -30,7 +30,7 @@ jobs:
           git config --local user.email 'cron@example.com'
           git config --local user.name 'Ember.js Cron CI'
           git add cron.txt
-          git commit -m 'Kick off cron on "$(date +%Y-%m-%d)" run of CI for ${{matrix.branch}}'
+          git commit -m "Kick off cron on $(date +%Y-%m-%d) run of CI for ${{matrix.branch}}"
           export SHA=`git rev-parse HEAD`
           echo "::set-env name=SHA::$SHA"
 
@@ -47,5 +47,5 @@ jobs:
           appSlugFilter: github-actions
           onlyFirstCheckSuite: true
           timeoutSeconds: 600
-      - name: Cleanup
+      - name: Cleanup #TODO: needs to happen even on fail
         run: git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN}}@github.com/${GITHUB_REPOSITORY} --delete cron-${{matrix.branch}}
