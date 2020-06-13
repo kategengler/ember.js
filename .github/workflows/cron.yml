@@ -15,8 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - master
-          - beta
+         # - master
+         # - beta
           - release
     steps:
       - uses: actions/checkout@v2
@@ -35,11 +35,9 @@ jobs:
           echo "::set-env name=SHA::$SHA"
 
       - name: Push branch
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          branch: cron-${{matrix.branch}}
-          force: true
-          github_token: ${{ secrets.PERSONAL_TOKEN }}
+        run: |
+          git co -B cron-${{matrix.branch}}-${{env.SHA}}
+          git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN }}@github.com/${GITHUB_REPOSITORY} cron-${{matrix.branch}}-${{env.SHA}} --force
       - name: Wait for suite completion
         uses: jitterbit/await-check-suites@v1
         with:
@@ -49,4 +47,4 @@ jobs:
           timeoutSeconds: 600
       - name: Cleanup
         if: ${{ success() }} || ${{ failure() }}
-        run: git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN}}@github.com/${GITHUB_REPOSITORY} --delete cron-${{matrix.branch}}
+        run: git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN}}@github.com/${GITHUB_REPOSITORY} --delete cron-${{matrix.branch}}-${{env.SHA}}

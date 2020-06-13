@@ -9,6 +9,7 @@ on:
       # release branches
       - release*
       - lts*
+      # nightly ci cron branches
       - cron*
     tags:
       - 'v*'
