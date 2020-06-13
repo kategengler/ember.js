@@ -65,18 +65,9 @@ jobs:
         with:
           node-version: 10.x
       - name: install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
-      - name: build
-        env:
-          DISABLE_SOURCE_MAPS: true
-          BROCCOLI_ENV: production
-          SHOULD_TRANSPILE: true
-        run: yarn ember build
-      - name: test:browserstack
-        env:
-          BROWSERSTACK_USERNAME: emberjscoreteam1
-          BROWSERSTACK_ACCESS_KEY: YsPxXKcahx9XszyHS2Gr
-        run: yarn test:browserstack
+        run: |
+          echo "The github context is:"
+          echo "${{ toJson(github) }}"
 
   production-test:
     name: Production (All Tests + Canary Features)
