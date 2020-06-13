@@ -36,7 +36,7 @@ jobs:
 
       - name: Push branch
         run: |
-          git co -B cron-${{matrix.branch}}-${{env.SHA}}
+          git checkout -B cron-${{matrix.branch}}-${{env.SHA}}
           git push https://${GITHUB_ACTOR}:${{ secrets.PERSONAL_TOKEN }}@github.com/${GITHUB_REPOSITORY} cron-${{matrix.branch}}-${{env.SHA}} --force
       - name: Wait for suite completion
         uses: jitterbit/await-check-suites@v1
