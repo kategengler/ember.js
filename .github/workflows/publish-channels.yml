@@ -1,0 +1,56 @@
+name: Publish Channels
+
+on:
+  push:
+    branches:
+      - master
+      - beta
+      - release
+
+jobs:
+  publish-channel:
+    name: Publish channel to s3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: build for publish
+        run: node bin/build-for-publishing.js
+      - name: wait for ci completion
+        uses: jitterbit/await-check-suites@v1
+      - name: publish to s3
+        run: node bin/publish_to_s3.js
+        env:
+          S3_BUCKET_NAME: 'builds.emberjs.com'
+          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY}}
+          S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID}}
+
+  publish-alpha:
+    name: Publish alpha from default branch
+    runs-on: ubuntu-latest
+    # Only run on pushes to master
+    if:  github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: build for publish
+        run: node bin/build-for-publishing.js
+      - name: wait for ci completion
+        uses: jitterbit/await-check-suites@v1
+      - name: publish to s3
+        run: node bin/publish_to_s3.js
+        env:
+          BUILD_TYPE: alpha
+          OVERRIDE_FEATURES: ''
+          S3_BUCKET_NAME: 'builds.emberjs.com'
+          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY}}
+          S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID}}
+

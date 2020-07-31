@@ -1,0 +1,27 @@
+name: Publish Tag
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish-tag:
+    name: Deploy tags to npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+          registry-url: 'https://registry.npmjs.org'
+      - name: install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: build for publish
+        run: node bin/build-for-publishing.js
+      - name: wait for ci completion
+        uses: jitterbit/await-check-suites@v1
+      - name: publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

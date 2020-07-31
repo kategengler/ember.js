@@ -32,7 +32,7 @@ jobs:
           export SHA=`git rev-parse HEAD`
           echo "::set-env name=SHA::$SHA"
 
-      - name: Push branch to trigger Build workflow
+      - name: Push branch to trigger CI workflow
         # This must use a personal access token because of a Github Actions
         # limitation where it will not trigger workflows from pushes from
         # other workflows with the token it provides.
