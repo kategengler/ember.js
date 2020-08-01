@@ -20,6 +20,9 @@ jobs:
       - name: build for publish
         run: node bin/build-for-publishing.js
       - name: wait for ci completion
+        with:
+          appSlugFilter: github-actions
+          timeoutSeconds: 1800
         uses: jitterbit/await-check-suites@v1
       - name: publish to npm
         run: npm publish

@@ -22,6 +22,9 @@ jobs:
         run: node bin/build-for-publishing.js
       - name: wait for ci completion
         uses: jitterbit/await-check-suites@v1
+        with:
+          appSlugFilter: github-actions
+          timeoutSeconds: 1800
       - name: publish to s3
         run: node bin/publish_to_s3.js
         env:
@@ -45,6 +48,9 @@ jobs:
         run: node bin/build-for-publishing.js
       - name: wait for ci completion
         uses: jitterbit/await-check-suites@v1
+        with:
+          appSlugFilter: github-actions
+          timeoutSeconds: 1800
       - name: publish to s3
         run: node bin/publish_to_s3.js
         env:
