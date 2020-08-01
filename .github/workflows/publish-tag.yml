@@ -21,6 +21,7 @@ jobs:
         run: node bin/build-for-publishing.js
       - name: wait for ci completion
         with:
+          ref: ${{github.ref}}
           appSlugFilter: github-actions
           timeoutSeconds: 1800
         uses: jitterbit/await-check-suites@v1
